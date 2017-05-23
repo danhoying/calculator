@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Double operand1 = null;
     private String pendingOperation = "=";
     private final String OPERATION_CONTENTS = "OperationContents";
+    private final String OPERAND_CONTENTS = "OperandContents";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,14 +90,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString(OPERATION_CONTENTS, displayOperation.getText().toString());
+        outState.putString(OPERATION_CONTENTS, pendingOperation);
+        if (operand1 != null) {
+            outState.putDouble(OPERAND_CONTENTS, operand1);
+        }
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        displayOperation.setText(savedInstanceState.getString(OPERATION_CONTENTS));
+        pendingOperation = savedInstanceState.getString(OPERATION_CONTENTS);
+        operand1 = savedInstanceState.getDouble(OPERAND_CONTENTS);
+        displayOperation.setText(pendingOperation);
     }
 
     private void performOperation(Double value, String operation) {

@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     // Variables to hold the operands and type of calculations
     private Double operand1 = null;
     private String pendingOperation = "=";
+    private final String OPERATION_CONTENTS = "OperationContents";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,18 @@ public class MainActivity extends AppCompatActivity {
         buttonMultiply.setOnClickListener(opListener);
         buttonMinus.setOnClickListener(opListener);
         buttonPlus.setOnClickListener(opListener);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString(OPERATION_CONTENTS, displayOperation.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        displayOperation.setText(savedInstanceState.getString(OPERATION_CONTENTS));
     }
 
     private void performOperation(Double value, String operation) {

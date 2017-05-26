@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         Button button8 = (Button) findViewById(R.id.button8);
         Button button9 = (Button) findViewById(R.id.button9);
         Button buttonDot = (Button) findViewById(R.id.buttonDot);
-        Button buttonNegative = (Button) findViewById(R.id.buttonNegative);
 
         Button buttonEquals = (Button) findViewById(R.id.buttonEquals);
         Button buttonDivide = (Button) findViewById(R.id.buttonDivide);
@@ -64,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         button8.setOnClickListener(listener);
         button9.setOnClickListener(listener);
         buttonDot.setOnClickListener(listener);
-        buttonNegative.setOnClickListener(listener);
 
         View.OnClickListener opListener = new View.OnClickListener() {
             @Override
@@ -88,6 +86,27 @@ public class MainActivity extends AppCompatActivity {
         buttonMultiply.setOnClickListener(opListener);
         buttonMinus.setOnClickListener(opListener);
         buttonPlus.setOnClickListener(opListener);
+
+        Button buttonNegative = (Button) findViewById(R.id.buttonNegative);
+
+        buttonNegative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value = newNumber.getText().toString();
+                if (value.length() == 0) {
+                    newNumber.setText("-");
+                } else {
+                    try {
+                        Double doubleValue = Double.valueOf(value);
+                        doubleValue *= -1;
+                        newNumber.setText(doubleValue.toString());
+                    } catch (NumberFormatException e) {
+                        // newNumber was "-" or ".", so clear it
+                        newNumber.setText("");
+                    }
+                }
+            }
+        });
     }
 
     @Override

@@ -233,8 +233,8 @@
 
     <Button
         android:id="@+id/buttonNegative"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:minHeight="48dp"
         android:minWidth="48dp"
@@ -242,5 +242,17 @@
         android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonDivide"
         app:layout_constraintLeft_toRightOf="@+id/buttonDivide" />
+
+    <Button
+        android:id="@+id/buttonClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:text="CLR"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonMultiply"
+        app:layout_constraintLeft_toRightOf="@+id/buttonMultiply" />
 
 </android.support.constraint.ConstraintLayout>

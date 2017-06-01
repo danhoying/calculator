@@ -107,6 +107,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Button buttonClear = (Button) findViewById(R.id.buttonClear);
+
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayOperation.setText("");
+                operand1 = null;
+                result.setText("");
+                newNumber.setText("");
+            }
+        });
     }
 
     @Override
